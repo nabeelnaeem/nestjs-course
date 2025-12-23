@@ -8,6 +8,7 @@ import {
   Req,
   Headers,
   Ip,
+  ParseIntPipe,
 } from '@nestjs/common';
 import type { Request } from 'express';
 
@@ -15,12 +16,17 @@ import type { Request } from 'express';
 export class UsersController {
   // @Get('{/:id}') if we want to keep it optional
   // This is the newer syntax of making a param optional in nest
-  @Get('/:id{/:optional}')
+  @Get('{/:id}')
   // public getUsers(@Param() params: any, @Query() query: any) {
   // Below we are only extracting id and name
-  public getUsers(@Param('id') params: any, @Query('name') query: any) {
-    console.log(params);
+  public getUsers(
+    @Param('id', ParseIntPipe) id: number | undefined,
+    @Query('name') query: any,
+  ) {
+    console.log(id);
+    console.log('id', typeof id);
     console.log(query);
+    console.log('query', typeof query);
     return 'You send a get request to users endpoint';
   }
 
