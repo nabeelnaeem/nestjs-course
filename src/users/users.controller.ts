@@ -5,12 +5,14 @@ import {
   Param,
   Query,
   Body,
-  Req,
   Headers,
   Ip,
   ParseIntPipe,
+  DefaultValuePipe,
+  ValidationPipe,
 } from '@nestjs/common';
 import type { Request } from 'express';
+import { CreateUserDto } from './dtos/create-user.dto';
 
 @Controller('users')
 export class UsersController {
@@ -21,12 +23,15 @@ export class UsersController {
   // Below we are only extracting id and name
   public getUsers(
     @Param('id', ParseIntPipe) id: number | undefined,
-    @Query('name') query: any,
+    @Query('limit', new DefaultValuePipe(10), ParseIntPipe) limit: number,
+    @Query('page', new DefaultValuePipe(1), ParseIntPipe) page: number,
   ) {
     console.log(id);
     console.log('id', typeof id);
-    console.log(query);
-    console.log('query', typeof query);
+    console.log(limit);
+    console.log('limit', typeof limit);
+    console.log(page);
+    console.log('page', typeof page);
     return 'You send a get request to users endpoint';
   }
 
@@ -35,14 +40,10 @@ export class UsersController {
   // Above is how we grab request body in nest js
   // Below is how we grab request body in express js
   // Only use express version when modifying req is not possible inside nest js
-  public createUsers(
-    @Req() request: Request,
-    @Headers() headers: any,
-    @Ip() ip: any,
-  ) {
-    console.log(request.body);
-    console.log(headers);
-    console.log(ip);
+  // public createUsers(
+  //   @Req() request: Request,
+  public createUsers(@Body(new ValidationPipe()) createUserDto: CreateUserDto) {
+    console.log(createUserDto);
     return 'You send a post request to users endpoint';
   }
 }
