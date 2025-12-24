@@ -9,6 +9,7 @@ async function bootstrap() {
     new ValidationPipe({
       whitelist: true, //Only properties that are present in dto will be passed
       forbidNonWhitelisted: true, //Forbids the nonwhitelisted properties and throws an error
+      transform: true, //Transforms the incoming req to an instance of DTO class after validation
     }),
   );
   await app.listen(process.env.PORT ?? 3000);

@@ -40,7 +40,7 @@ export class UsersController {
   // public createUsers(
   //   @Req() request: Request,
   public createUsers(@Body() createUserDto: CreateUserDto) {
-    console.log(createUserDto);
+    console.log(createUserDto instanceof CreateUserDto);
     return 'You send a post request to users endpoint';
   }
 }
