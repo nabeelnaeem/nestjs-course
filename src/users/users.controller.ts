@@ -5,11 +5,8 @@ import {
   Param,
   Query,
   Body,
-  Headers,
-  Ip,
   ParseIntPipe,
   DefaultValuePipe,
-  ValidationPipe,
 } from '@nestjs/common';
 import type { Request } from 'express';
 import { CreateUserDto } from './dtos/create-user.dto';
@@ -42,7 +39,7 @@ export class UsersController {
   // Only use express version when modifying req is not possible inside nest js
   // public createUsers(
   //   @Req() request: Request,
-  public createUsers(@Body(new ValidationPipe()) createUserDto: CreateUserDto) {
+  public createUsers(@Body() createUserDto: CreateUserDto) {
     console.log(createUserDto);
     return 'You send a post request to users endpoint';
   }
