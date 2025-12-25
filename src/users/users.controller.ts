@@ -13,9 +13,12 @@ import type { Request } from 'express';
 import { CreateUserDto } from './dtos/create-user.dto';
 import { GetUsersParamsDto } from './dtos/get-users-params.dto';
 import { PatchUserDto } from './dtos/ptach-user.dto';
+import { UsersService } from './providers/users.service';
 
 @Controller('users')
 export class UsersController {
+  // Injecting user service
+  constructor(private readonly usersService: UsersService) {}
   // @Get('{/:id}') if we want to keep it optional
   // This is the newer syntax of making a param optional in nest
   @Get('{/:id}')
@@ -29,6 +32,7 @@ export class UsersController {
     console.log(getUsersParamsDto);
     console.log('getUsersParamsDto', typeof getUsersParamsDto);
     console.log('getUsersParamsDto', getUsersParamsDto);
+    console.log({ limit: limit, page: page });
     return 'You send a get request to users endpoint';
   }
 
