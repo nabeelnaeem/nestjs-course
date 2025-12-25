@@ -7,10 +7,12 @@ import {
   Body,
   ParseIntPipe,
   DefaultValuePipe,
+  Patch,
 } from '@nestjs/common';
 import type { Request } from 'express';
 import { CreateUserDto } from './dtos/create-user.dto';
 import { GetUsersParamsDto } from './dtos/get-users-params.dto';
+import { PatchUserDto } from './dtos/ptach-user.dto';
 
 @Controller('users')
 export class UsersController {
@@ -40,5 +42,12 @@ export class UsersController {
   public createUsers(@Body() createUserDto: CreateUserDto) {
     console.log(createUserDto instanceof CreateUserDto);
     return 'You send a post request to users endpoint';
+  }
+
+  @Patch()
+  public patchUser(@Body() patchUserDto: PatchUserDto) {
+    console.log(patchUserDto instanceof PatchUserDto);
+    console.log(patchUserDto);
+    return 'You send a patch request to users endpoint';
   }
 }
