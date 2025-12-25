@@ -9,7 +9,6 @@ import {
   DefaultValuePipe,
   Patch,
 } from '@nestjs/common';
-import type { Request } from 'express';
 import { CreateUserDto } from './dtos/create-user.dto';
 import { GetUsersParamsDto } from './dtos/get-users-params.dto';
 import { PatchUserDto } from './dtos/ptach-user.dto';
@@ -29,11 +28,7 @@ export class UsersController {
     @Query('limit', new DefaultValuePipe(10), ParseIntPipe) limit: number,
     @Query('page', new DefaultValuePipe(1), ParseIntPipe) page: number,
   ) {
-    console.log(getUsersParamsDto);
-    console.log('getUsersParamsDto', typeof getUsersParamsDto);
-    console.log('getUsersParamsDto', getUsersParamsDto);
-    console.log({ limit: limit, page: page });
-    return 'You send a get request to users endpoint';
+    return this.usersService.findAll(getUsersParamsDto, limit, page);
   }
 
   @Post()
