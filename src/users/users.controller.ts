@@ -10,6 +10,7 @@ import {
 } from '@nestjs/common';
 import type { Request } from 'express';
 import { CreateUserDto } from './dtos/create-user.dto';
+import { GetUsersParamsDto } from './dtos/get-users-params.dto';
 
 @Controller('users')
 export class UsersController {
@@ -19,16 +20,13 @@ export class UsersController {
   // public getUsers(@Param() params: any, @Query() query: any) {
   // Below we are only extracting id and name
   public getUsers(
-    @Param('id', ParseIntPipe) id: number | undefined,
+    @Param() getUsersParamsDto: GetUsersParamsDto,
     @Query('limit', new DefaultValuePipe(10), ParseIntPipe) limit: number,
     @Query('page', new DefaultValuePipe(1), ParseIntPipe) page: number,
   ) {
-    console.log(id);
-    console.log('id', typeof id);
-    console.log(limit);
-    console.log('limit', typeof limit);
-    console.log(page);
-    console.log('page', typeof page);
+    console.log(getUsersParamsDto);
+    console.log('getUsersParamsDto', typeof getUsersParamsDto);
+    console.log('getUsersParamsDto', getUsersParamsDto);
     return 'You send a get request to users endpoint';
   }
 
