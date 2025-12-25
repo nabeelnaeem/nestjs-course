@@ -8,19 +8,23 @@ export class UsersService {
     limit: number,
     page: number,
   ) {
+    return [
+      {
+        firstName: 'John',
+        email: 'john@doe.com',
+      },
+      {
+        firstName: 'Alice',
+        email: 'alice@doe.com',
+      },
+    ];
+  }
+
+  public findOneById(id: string) {
     return {
-      users: [
-        {
-          firstName: 'John',
-          email: 'john@doe.com',
-        },
-        {
-          firstName: 'Alice',
-          email: 'alice@doe.com',
-        },
-      ],
-      page,
-      limit,
+      id,
+      firstName: 'John',
+      email: 'john@doe.com',
     };
   }
 }
