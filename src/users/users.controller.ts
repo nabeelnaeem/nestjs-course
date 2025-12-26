@@ -13,7 +13,7 @@ import { CreateUserDto } from './dtos/create-user.dto';
 import { GetUsersParamsDto } from './dtos/get-users-params.dto';
 import { PatchUserDto } from './dtos/ptach-user.dto';
 import { UsersService } from './providers/users.service';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiOperation, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
 
 @Controller('users')
 @ApiTags('Users')
@@ -23,6 +23,27 @@ export class UsersController {
   // @Get('{/:id}') if we want to keep it optional
   // This is the newer syntax of making a param optional in nest
   @Get('{/:id}')
+  @ApiOperation({
+    summary: 'Fetches a list of register users on the application',
+  })
+  @ApiResponse({
+    status: 200,
+    description: 'Users fetched successfully based on query',
+  })
+  @ApiQuery({
+    name: 'limit',
+    type: 'number',
+    required: false,
+    description: 'The number of enteries returned for this query',
+    example: 10,
+  })
+  @ApiQuery({
+    name: 'page',
+    type: 'number',
+    required: false,
+    description: 'The position of page number that you want the API to return',
+    example: 2,
+  })
   // public getUsers(@Param() params: any, @Query() query: any) {
   // Below we are only extracting id and name
   public getUsers(
