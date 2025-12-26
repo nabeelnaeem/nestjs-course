@@ -1,0 +1,15 @@
+POST http://localhost:3000/posts
+Content-Type: application/json
+
+{
+  "title": "Post Title",
+  "postType": "post",
+  "slug": "post-name-123",
+  "status": "scheduled",
+  "content": "Post Content",
+  "schema": "Post Schema",
+  "featuredImageUrl": "http://post-image.jpg",
+  "publishedOn": "10/10/2025",
+  "tags": ["MyPost", "PostABC", "Post123"],
+  "metaOptions": [{"key1": "value1"}, {"key2": "value2"}]
+}
