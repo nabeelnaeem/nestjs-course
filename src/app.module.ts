@@ -5,9 +5,27 @@ import { UsersModule } from './users/users.module';
 import { PostsModule } from './posts/posts.module';
 import { AuthController } from './auth/auth.controller';
 import { AuthModule } from './auth/auth.module';
+import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
-  imports: [UsersModule, PostsModule, AuthModule],
+  imports: [
+    UsersModule,
+    PostsModule,
+    AuthModule,
+    TypeOrmModule.forRoot({
+      type: 'postgres',
+      entities: [],
+      // Synchronize should only be used in dev mode
+      // It is destructive and should not be used in production mode to avoid data loss
+      // We will use migrations which are safe for production mode
+      synchronize: true,
+      port: 5432,
+      username: 'postgres',
+      password: 'admin',
+      host: 'localhost',
+      database: 'nestjs-blog',
+    }),
+  ],
   controllers: [AppController, AuthController],
   providers: [AppService],
 })
