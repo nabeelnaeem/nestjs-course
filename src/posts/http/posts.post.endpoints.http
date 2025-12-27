@@ -9,7 +9,8 @@ Content-Type: application/json
   "content": "Post Content",
   "schema": "{\r\n \"@context\": \"https:\\/\\/schema.org\", \r\n \"@type\": \"Person\"\r\n }",
   "featuredImageUrl": "http://post-image.jpg",
-  "publishedOn": "2024-03-16T07:46:32+0000",
+  "publishedOn": "
+  ",
   "tags": ["MyPost", "PostABC", "Post123"],
   "metaOptions": [
     {
