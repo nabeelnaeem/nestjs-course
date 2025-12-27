@@ -7,9 +7,14 @@ Content-Type: application/json
   "slug": "post-name-123",
   "status": "scheduled",
   "content": "Post Content",
-  "schema": "Post Schema",
+  "schema": "{\r\n \"@context\": \"https:\\/\\/schema.org\", \r\n \"@type\": \"Person\"\r\n }",
   "featuredImageUrl": "http://post-image.jpg",
-  "publishedOn": "10/10/2025",
+  "publishedOn": "2024-03-16T07:46:32+0000",
   "tags": ["MyPost", "PostABC", "Post123"],
-  "metaOptions": [{"key1": "value1"}, {"key2": "value2"}]
+  "metaOptions": [
+    {
+      "key": "testKey",
+      "value": 20
+    }
+  ]
 }
