@@ -6,6 +6,7 @@ import { PostsModule } from './posts/posts.module';
 import { AuthController } from './auth/auth.controller';
 import { AuthModule } from './auth/auth.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { User } from './users/user.entity';
 
 @Module({
   imports: [
@@ -17,7 +18,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       inject: [],
       useFactory: () => ({
         type: 'postgres',
-        entities: [],
+        // We have to add all the entities inside this array
+        entities: [User],
         // Synchronize should only be used in dev mode
         // It is destructive and should not be used in production mode to avoid data loss
         // We will use migrations which are safe for production mode
