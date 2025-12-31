@@ -7,6 +7,7 @@ import { AuthController } from './auth/auth.controller';
 import { AuthModule } from './auth/auth.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './users/user.entity';
+import { TagsModule } from './tags/tags.module';
 
 @Module({
   imports: [
@@ -31,6 +32,7 @@ import { User } from './users/user.entity';
         database: 'nestjs-blog',
       }),
     }),
+    TagsModule,
   ],
   controllers: [AppController, AuthController],
   providers: [AppService],
