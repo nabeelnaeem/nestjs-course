@@ -21,7 +21,8 @@ import { MetaOptionsModule } from './meta-options/meta-options.module';
       useFactory: () => ({
         type: 'postgres',
         // We have to add all the entities inside this array
-        entities: [User],
+        // entities: [User],
+        autoLoadEntities: true,
         // Synchronize should only be used in dev mode
         // It is destructive and should not be used in production mode to avoid data loss
         // We will use migrations which are safe for production mode
