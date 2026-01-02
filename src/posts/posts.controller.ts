@@ -26,9 +26,7 @@ export class PostsController {
   })
   @Post()
   public createPost(@Body() createPostDto: CreatePostDto) {
-    console.log(typeof createPostDto);
-    console.log(createPostDto);
-    return 'You sent a post request to posts endpoint';
+    return this.postsService.create(createPostDto);
   }
 
   @ApiOperation({
