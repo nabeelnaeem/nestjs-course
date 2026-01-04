@@ -5,6 +5,7 @@ import { Repository } from 'typeorm';
 import { Post } from '../post.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { MetaOption } from 'src/meta-options/meta-option.entity';
+import { response } from 'express';
 
 @Injectable()
 export class PostsService {
@@ -64,14 +65,14 @@ export class PostsService {
 
   public async delete(id: number) {
     // Find the post
-    let post = await this.postsRepository.findOneBy({ id });
+    // let post = await this.postsRepository.findOneBy({ id });
     // // Delete the post
-    await this.postsRepository.delete(id);
+    const result = await this.postsRepository.delete(id);
 
     // // Delete metaOptions
-    if (post?.metaOptions?.id) {
-      await this.metaOptionsRepository.delete(post.metaOptions.id);
-    }
+    // if (post?.metaOptions?.id) {
+    //   await this.metaOptionsRepository.delete(post.metaOptions.id);
+    // }
     // let inversePost = await this.metaOptionsRepository.find({
     //   where: { id: post?.metaOptions?.id },
     //   relations: {
@@ -79,7 +80,11 @@ export class PostsService {
     //   },
     // });
     // Confirmation
-    return { delete: true, id };
+    return {
+      Deleted: result.affected === 0 ? false : true,
+      response: result.raw[0],
+      id,
+    };
     // return { inversePost };
   }
 }

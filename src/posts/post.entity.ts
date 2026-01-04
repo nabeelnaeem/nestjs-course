@@ -1,10 +1,4 @@
-import {
-  Column,
-  Entity,
-  JoinColumn,
-  OneToOne,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
+import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { PostType } from './enums/postType.enum';
 import { PostStatus } from './enums/postStatus.enum';
 import { CreatePostMetaOptionsDto } from '../meta-options/dtos/create-post-meta-options.dto';
@@ -78,6 +72,5 @@ export class Post {
     cascade: true, //To create metaoptions with post automatically
     eager: true, //To load metaoptions along with posts
   })
-  @JoinColumn() //Responsible for creating entity column
   metaOptions?: MetaOption;
 }
