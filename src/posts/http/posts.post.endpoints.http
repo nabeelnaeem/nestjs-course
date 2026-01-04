@@ -4,14 +4,14 @@ Content-Type: application/json
 {
   "title": "Post Title",
   "postType": "post",
-  "slug": "post-name-123-3",
+  "slug": "post-name-123-4",
   "status": "scheduled",
   "content": "Post Content",
   "schema": "{\r\n \"@context\": \"https:\\/\\/schema.org\", \r\n \"@type\": \"Person\"\r\n }",
   "featuredImageUrl": "http://post-image.jpg",
-  "publishedOn": "2024-03-16T07:46:32.000Z"
+  "publishedOn": "2024-03-16T07:46:32.000Z",
   //"tags": ["MyPost", "PostABC", "Post123"],
-  //"metaOptions": {
-  //     "metaValue" : "{\"sidebarEnabled\": true, \"footerActive\": true}"
-  //}
+  "metaOptions": {
+       "metaValue" : "{\"sidebarEnabled\": true, \"footerActive\": true}"
+  }
 }

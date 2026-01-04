@@ -65,15 +65,21 @@ export class PostsService {
   public async delete(id: number) {
     // Find the post
     let post = await this.postsRepository.findOneBy({ id });
-    // Delete the post
+    // // Delete the post
     await this.postsRepository.delete(id);
 
-    // Delete metaOptions
+    // // Delete metaOptions
     if (post?.metaOptions?.id) {
       await this.metaOptionsRepository.delete(post.metaOptions.id);
     }
-
+    // let inversePost = await this.metaOptionsRepository.find({
+    //   where: { id: post?.metaOptions?.id },
+    //   relations: {
+    //     post: true,
+    //   },
+    // });
     // Confirmation
     return { delete: true, id };
+    // return { inversePost };
   }
 }

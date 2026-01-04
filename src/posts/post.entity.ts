@@ -74,7 +74,7 @@ export class Post {
   // Work on coming lectures
   tags?: string[];
 
-  @OneToOne(() => MetaOption, {
+  @OneToOne(() => MetaOption, (metaOptions) => metaOptions.post, {
     cascade: true, //To create metaoptions with post automatically
     eager: true, //To load metaoptions along with posts
   })
