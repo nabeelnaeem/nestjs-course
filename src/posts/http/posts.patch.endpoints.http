@@ -2,6 +2,12 @@ PATCH http://localhost:3000/posts
 Content-Type: application/json
 
 {
-  "id": 1234,
-  "postType": "jkljkl"
+  "id": 11,
+  "title": "Post Title",
+  "postType": "post",
+  "slug": "post-name-123-11",
+  "status": "scheduled",
+  "content": "Post Content",
+  "featuredImageUrl": "http://post-image.jpg",
+  "tags": [1, 4]
 }
