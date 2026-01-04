@@ -45,24 +45,20 @@ export class PostsService {
     return await this.postsRepository.save(post);
   }
 
-  public findAll(userId: string) {
+  public async findAll(userId: string) {
     //Users service
     //Find a user
     //return posts
 
     const user = this.usersService.findOneById(userId);
 
-    return [
-      {
-        user,
-        title: 'Test Title 1',
-        content: 'Test Content 1',
-      },
-      {
-        user,
-        title: 'Test Title 2',
-        content: 'Test Content 2',
-      },
-    ];
+    let posts = await this.postsRepository.find({
+      // We can load metaOptions by uncommenting the code below or using eager loading in post entity
+      // relations: {
+      //   metaOptions: true,
+      // },
+    });
+
+    return posts;
   }
 }

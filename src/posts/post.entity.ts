@@ -75,7 +75,8 @@ export class Post {
   tags?: string[];
 
   @OneToOne(() => MetaOption, {
-    cascade: true,
+    cascade: true, //To create metaoptions with post automatically
+    eager: true, //To load metaoptions along with posts
   })
   @JoinColumn() //Responsible for creating entity column
   metaOptions?: MetaOption;
