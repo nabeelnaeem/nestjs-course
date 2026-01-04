@@ -1,4 +1,4 @@
-import { Body, Injectable } from '@nestjs/common';
+import { Body, Injectable, NotFoundException } from '@nestjs/common';
 import { UsersService } from 'src/users/providers/users.service';
 import { CreatePostDto } from '../dtos/create-post.dto';
 import { Repository } from 'typeorm';
@@ -6,6 +6,7 @@ import { Post } from '../post.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { MetaOption } from 'src/meta-options/meta-option.entity';
 import { response } from 'express';
+import { NotFoundError } from 'rxjs';
 
 @Injectable()
 export class PostsService {
@@ -27,6 +28,8 @@ export class PostsService {
    */
 
   public async create(@Body() createPostDto: CreatePostDto) {
+    // Find author from database based on  authorId
+    const author = await this.usersService.findOneById(createPostDto.authorId);
     // const { metaOptions, ...postData } = createPostDto;
 
     // // Create metaOptions
@@ -39,8 +42,12 @@ export class PostsService {
     //   metaOptions: metaOptions ?? undefined,
     // });
 
-    // Cascade true
-    let post = this.postsRepository.create(createPostDto);
+    if (!author) throw new NotFoundException('Author not found');
+
+    let post = this.postsRepository.create({
+      ...createPostDto,
+      author: author,
+    });
 
     // Return the post to user
     return await this.postsRepository.save(post);
@@ -50,8 +57,6 @@ export class PostsService {
     //Users service
     //Find a user
     //return posts
-
-    const user = this.usersService.findOneById(userId);
 
     let posts = await this.postsRepository.find({
       // We can load metaOptions by uncommenting the code below or using eager loading in post entity
