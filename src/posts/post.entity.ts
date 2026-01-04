@@ -89,7 +89,7 @@ export class Post {
   author: User;
 
   // Work on coming lectures
-  @ManyToMany(() => Tag, {
+  @ManyToMany(() => Tag, (tag) => tag.posts, {
     eager: true, //To load tags along with posts
   })
   @JoinTable() //Makes the owning side of relationship, if we remove posts, it will also remove tags associated with it
