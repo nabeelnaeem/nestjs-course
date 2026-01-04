@@ -1,6 +1,7 @@
 // User entity file name should be singular
 // The validations should match the DTO
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Post } from 'src/posts/post.entity';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('users')
 export class User {
@@ -35,4 +36,8 @@ export class User {
     nullable: false,
   })
   password: string;
+
+  // FK will lie with ManyToOne, in this case post entity
+  @OneToMany(() => Post, (post) => post.author)
+  posts: Post[];
 }
