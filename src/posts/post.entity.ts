@@ -84,12 +84,14 @@ export class Post {
 
   // Foriegn key will lie with this
   @ManyToOne(() => User, (user) => user.posts, {
-    eager: true,
+    eager: true, //To load author along with posts
   })
   author: User;
 
   // Work on coming lectures
-  @ManyToMany(() => Tag)
+  @ManyToMany(() => Tag, {
+    eager: true, //To load tags along with posts
+  })
   @JoinTable()
   tags?: Tag[];
 }
