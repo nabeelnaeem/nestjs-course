@@ -1,6 +1,9 @@
 import {
   Column,
   Entity,
+  JoinColumn,
+  JoinTable,
+  ManyToMany,
   ManyToOne,
   OneToOne,
   PrimaryGeneratedColumn,
@@ -10,6 +13,7 @@ import { PostStatus } from './enums/postStatus.enum';
 import { CreatePostMetaOptionsDto } from '../meta-options/dtos/create-post-meta-options.dto';
 import { MetaOption } from 'src/meta-options/meta-option.entity';
 import { User } from 'src/users/user.entity';
+import { Tag } from 'src/tags/tag.entity';
 
 @Entity('posts')
 export class Post {
@@ -72,9 +76,6 @@ export class Post {
   })
   publishedOn: Date;
 
-  // Work on coming lectures
-  tags?: string[];
-
   @OneToOne(() => MetaOption, (metaOptions) => metaOptions.post, {
     cascade: true, //To create metaoptions with post automatically
     eager: true, //To load metaoptions along with posts
@@ -86,4 +87,9 @@ export class Post {
     eager: true,
   })
   author: User;
+
+  // Work on coming lectures
+  @ManyToMany(() => Tag)
+  @JoinTable()
+  tags?: Tag[];
 }
