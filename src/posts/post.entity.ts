@@ -74,7 +74,9 @@ export class Post {
   // Work on coming lectures
   tags?: string[];
 
-  @OneToOne(() => MetaOption)
+  @OneToOne(() => MetaOption, {
+    cascade: true,
+  })
   @JoinColumn() //Responsible for creating entity column
   metaOptions?: MetaOption;
 }

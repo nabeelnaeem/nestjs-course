@@ -26,17 +26,20 @@ export class PostsService {
    */
 
   public async create(@Body() createPostDto: CreatePostDto) {
-    const { metaOptions, ...postData } = createPostDto;
+    // const { metaOptions, ...postData } = createPostDto;
 
-    // Create metaOptions
-    if (metaOptions) {
-      await this.metaOptionsRepository.save(metaOptions);
-    }
+    // // Create metaOptions
+    // if (metaOptions) {
+    //   await this.metaOptionsRepository.save(metaOptions);
+    // }
     // CreatePost
-    let post = this.postsRepository.create({
-      ...postData,
-      metaOptions: metaOptions ?? undefined,
-    });
+    // let post = this.postsRepository.create({
+    //   ...postData,
+    //   metaOptions: metaOptions ?? undefined,
+    // });
+
+    // Cascade true
+    let post = this.postsRepository.create(createPostDto);
 
     // Return the post to user
     return await this.postsRepository.save(post);
