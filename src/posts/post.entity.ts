@@ -82,6 +82,8 @@ export class Post {
   metaOptions?: MetaOption;
 
   // Foriegn key will lie with this
-  @ManyToOne(() => User, (user) => user.posts)
+  @ManyToOne(() => User, (user) => user.posts, {
+    eager: true,
+  })
   author: User;
 }
