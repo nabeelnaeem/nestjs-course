@@ -1,4 +1,4 @@
 GET http://localhost:3000/users/12
 ?limit=10
 &page=1
-GET http://localhost:3000/users/100
+GET http://localhost:3000/users/

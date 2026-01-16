@@ -22,7 +22,7 @@ export class UsersController {
   constructor(private readonly usersService: UsersService) {}
   // @Get('{/:id}') if we want to keep it optional
   // This is the newer syntax of making a param optional in nest
-  @Get('{/:id}')
+  @Get('/:id?')
   @ApiOperation({
     summary: 'Fetches a list of register users on the application',
   })
@@ -51,6 +51,7 @@ export class UsersController {
     @Query('limit', new DefaultValuePipe(10), ParseIntPipe) limit: number,
     @Query('page', new DefaultValuePipe(1), ParseIntPipe) page: number,
   ) {
+    console.log('Users EP Hit');
     return this.usersService.findAll(getUsersParamsDto, limit, page);
   }
 
